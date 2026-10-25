@@ -19,6 +19,10 @@ class Seance
     #[ORM\Column]
     private ?\DateTimeImmutable $dateCrea = null;
 
+    #[ORM\ManyToOne(inversedBy: 'seances')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Campagne $campagne = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +48,18 @@ class Seance
     public function setDateCrea(\DateTimeImmutable $dateCrea): static
     {
         $this->dateCrea = $dateCrea;
+
+        return $this;
+    }
+
+    public function getCampagne(): ?Campagne
+    {
+        return $this->campagne;
+    }
+
+    public function setCampagne(?Campagne $campagne): static
+    {
+        $this->campagne = $campagne;
 
         return $this;
     }
