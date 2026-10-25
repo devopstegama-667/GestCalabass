@@ -31,6 +31,10 @@ class Campagne
     #[ORM\Column]
     private ?\DateTimeImmutable $dateMAJ = null;
 
+    #[ORM\ManyToOne(inversedBy: 'campagnes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TypeCampagne $typeCampagne = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +108,18 @@ class Campagne
     public function setDateMAJ(\DateTimeImmutable $dateMAJ): static
     {
         $this->dateMAJ = $dateMAJ;
+
+        return $this;
+    }
+
+    public function getTypeCampagne(): ?TypeCampagne
+    {
+        return $this->typeCampagne;
+    }
+
+    public function setTypeCampagne(?TypeCampagne $typeCampagne): static
+    {
+        $this->typeCampagne = $typeCampagne;
 
         return $this;
     }
