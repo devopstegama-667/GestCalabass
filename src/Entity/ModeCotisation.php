@@ -16,6 +16,10 @@ class ModeCotisation
     #[ORM\Column]
     private ?bool $isLibre = null;
 
+    #[ORM\ManyToOne(inversedBy: 'modeCotisations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Membre $membre = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +33,18 @@ class ModeCotisation
     public function setIsLibre(bool $isLibre): static
     {
         $this->isLibre = $isLibre;
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): static
+    {
+        $this->membre = $membre;
 
         return $this;
     }
